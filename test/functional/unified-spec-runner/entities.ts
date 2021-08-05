@@ -369,9 +369,8 @@ export class EntitiesMap<E = Entity> extends Map<string, E> {
             );
           }
           if (defaultOptions.writeConcern) {
-            options.defaultTransactionOptions.writeConcern = WriteConcern.fromOptions(
-              defaultOptions
-            );
+            options.defaultTransactionOptions.writeConcern =
+              WriteConcern.fromOptions(defaultOptions);
           }
           if (defaultOptions.readPreference) {
             options.defaultTransactionOptions.readPreference = ReadPreference.fromOptions(
