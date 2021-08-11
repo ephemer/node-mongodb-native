@@ -549,18 +549,14 @@ const CHANGE_STREAM_EVENTS = [
 function setIsEmitter<TSchema>(changeStream: ChangeStream<TSchema>): void {
   if (changeStream[kMode] === 'iterator') {
     // TODO(NODE-3485): Replace with MongoChangeStreamModeError
-    throw new MongoAPIError(
-      'ChangeStream cannot be used as an EventEmitter after being used as an iterator'
-    );
+    throw new MongoAPIError('Cannot use ChangeStream as an EventEmitter after used as an iterator');
   }
   changeStream[kMode] = 'emitter';
 }
 
 function setIsIterator<TSchema>(changeStream: ChangeStream<TSchema>): void {
   if (changeStream[kMode] === 'emitter') {
-    throw new MongoAPIError(
-      'ChangeStream cannot be used as an EventEmitter after being used as an iterator'
-    );
+    throw new MongoAPIError('Cannot use ChangeStream as iterator after used as an EventEmitter');
   }
   changeStream[kMode] = 'iterator';
 }
